@@ -8,7 +8,7 @@ fn main() {
     println!("Running {}", day);
 
     match day.as_str() {
-        "day1" => println!("{}", run_day1()),
+        "day1" => println!("{:?}", run_day1()),
         _ => panic!("Couldn't indentify day!"),
     }
 }

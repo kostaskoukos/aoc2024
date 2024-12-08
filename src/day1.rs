@@ -3,11 +3,16 @@ use std::{
     io::{self, BufRead},
 };
 
-pub fn run_day1() -> u32 {
+pub fn run_day1() -> (u32, u32) {
     let (mut v1, mut v2) = read_input();
     v1.sort();
     v2.sort();
-    v1.iter().zip(v2).map(|(a, b)| a.abs_diff(b)).sum()
+    (
+        v1.iter().zip(&v2).map(|(a, &b)| a.abs_diff(b)).sum(),
+        v1.iter()
+            .map(|x| x * (v2.iter().filter(|y| x == *y).count() as u32))
+            .sum(),
+    )
 }
 
 fn read_input() -> (Vec<u32>, Vec<u32>) {
