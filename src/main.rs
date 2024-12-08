@@ -1,3 +1,6 @@
+mod day1;
+use crate::day1::run_day1;
+
 fn main() {
     let day = std::env::args()
         .nth(1)
@@ -8,8 +11,4 @@ fn main() {
         "day1" => println!("{}", run_day1()),
         _ => panic!("Couldn't indentify day!"),
     }
-}
-
-fn run_day1() -> &'static str {
-    "pass"
 }
