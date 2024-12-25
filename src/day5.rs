@@ -37,3 +37,30 @@ fn part1(updates: &[Vec<u32>], order: &[(u32, u32)]) -> usize {
         .map(|update| update[update.len() / 2] as usize)
         .sum()
 }
+
+fn part2(updates: &mut [Vec<u32>], order: &[(u32, u32)]) -> usize {
+    updates
+        .iter_mut()
+        .filter(|update| {
+            let update_map: HashMap<u32, usize> =
+                update.iter().enumerate().map(|(i, &v)| (v, i)).collect();
+            !order.iter().any(|(a, b)| {
+                update_map.contains_key(a)
+                    && update_map.contains_key(b)
+                    && update_map.get(a).unwrap() > update_map.get(b).unwrap()
+            })
+        })
+        .map(|update| {
+            update.sort_unstable_by(|&a, &b| {
+                if order.contains(&(a, b)) {
+                    Ordering::Less
+                } else if order.contains(&(b, a)) {
+                    Ordering::Greater
+                } else {
+                    Ordering::Equal
+                }
+            });
+            update[update.len() / 2] as usize
+        })
+        .sum()
+}
