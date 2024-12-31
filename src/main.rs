@@ -16,6 +16,9 @@ use crate::day5::run_day5;
 mod day6;
 use crate::day6::run_day6;
 
+mod day7;
+use crate::day7::run_day7;
+
 fn main() {
     let day = std::env::args()
         .nth(1)
@@ -29,6 +32,7 @@ fn main() {
         "day4" => println!("{:?}", run_day4()),
         "day5" => println!("{:?}", run_day5()),
         "day6" => println!("{:?}", run_day6()),
+        "day7" => println!("{:?}", run_day7()),
         _ => panic!("Couldn't indentify day!"),
     }
 }
